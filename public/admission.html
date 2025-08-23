@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admission - PES Vidyakendra Preschool</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f6f9fc, #e3f2fd);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admission-header {
+      text-align: center;
+      padding: 50px 20px 30px;
+      color: #003344;
+    }
+
+    .admission-header h1 {
+      font-weight: 700;
+    }
+
+    .admission-header span {
+      color: #008080;
+    }
+
+    .form-container {
+      background: linear-gradient(145deg, #ffffff, #e3f7ff);
+      padding: 40px;
+      max-width: 720px;
+      margin: 0 auto 60px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-top: 5px solid #00bcd4;
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #003344;
+    }
+
+    .form-control, .form-select {
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .form-check-label {
+      font-size: 14px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(to right, #008080, #00bcd4);
+      border: none;
+      color: #fff;
+      padding: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(to right, #006666, #00a3b6);
+    }
+
+    footer {
+      background: #003344;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: #a0e7ff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 576px) {
+      .form-container {
+        padding: 25px;
+      }
+
+      .admission-header h1 {
+        font-size: 24px;
+      }
+
+      .form-title {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <section class="admission-header">
+    <h1>Admission Open for Academic Year <span>2026–2027</span></h1>
+    <h5 class="mt-3 text-secondary">Introducing</h5>
+    <h2 class="fw-bold mt-1">PES VIDYAKENDRA PRE SCHOOL</h2>
+  </section>
+
+  <!-- Form Section -->
+  <div class="form-container">
+    <h3 class="form-title">Enquire Now</h3>
+    <form class="needs-validation" id="admissionForm" novalidate>
+      <div class="mb-3">
+        <input type="text" name="childName" class="form-control" placeholder="Child Name" required>
+        <div class="invalid-feedback">Please enter your child's name.</div>
+      </div>
+      <div class="mb-3">
+        <input type="text" name="parentName" class="form-control" placeholder="Parent Name" required>
+        <div class="invalid-feedback">Please enter your name.</div>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
+          <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+        <div class="col-md-6">
+          <input type="tel" name="mobile" class="form-control" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+          <div class="invalid-feedback">Enter a 10-digit mobile number.</div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <select name="program" class="form-select" required>
+          <option value="">Select a Program</option>
+          <option>Nursery</option>
+          <option>LKG</option>
+          <option>UKG</option>
+          <option>1st Std</option>
+          <option>2nd Std</option>
+          <option>3rd Std</option>
+          <option>4th Std</option>
+          <option>5th Std</option>
+          <option>6th Std</option>
+          <option>7th Std</option>
+          <option>8th Std</option>
+          <option>9th Std</option>
+          <option>10th Std</option>
+        </select>
+        <div class="invalid-feedback">Please select a program.</div>
+      </div>
+      <div class="form-check mt-3">
+        <input class="form-check-input" type="checkbox" name="consent" id="consent" required>
+        <label class="form-check-label" for="consent">
+          By clicking on Submit, I allow all communication from PES VIDYAKENDRA.
+        </label>
+        <div class="invalid-feedback">You must agree before submitting.</div>
+      </div>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 PES Vidyakendra Pre School. All rights reserved.</p>
+      <p><a href="mailto:info@pesvidyakendra.com">info@pesvidyakendra.com</a></p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Form Validation Script -->
+  <script>
+  (() => {
+    'use strict';
+    const form = document.getElementById('admissionForm');
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+
+      const formData = new FormData(form);
+      const data = {
+        childName: formData.get('childName'),
+        parentName: formData.get('parentName'),
+        email: formData.get('email'),
+        mobileNumber: formData.get('mobile'),
+        program: formData.get('program'),
+        consent: formData.get('consent') === 'on'
+      };
+
+      try {
+        const response = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message); // Show server response
+        form.reset();
+        form.classList.remove('was-validated');
+      } catch (error) {
+        alert('Error submitting form: ' + error.message);
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>

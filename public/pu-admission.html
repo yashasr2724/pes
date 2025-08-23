@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PU College Admission - PES Vidyakendra</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f6f9fc, #e3f2fd);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      text-align: center;
+      padding: 40px 20px 30px;
+      color: #003344;
+    }
+
+    .header h1 span {
+      color: #00796b;
+    }
+
+    .form-container {
+      background: white;
+      padding: 40px;
+      max-width: 720px;
+      margin: 0 auto 60px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-top: 5px solid #4caf50;
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #004d40;
+    }
+
+    .form-control, .form-select {
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(to right, #388e3c, #66bb6a);
+      border: none;
+      color: #fff;
+      padding: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(to right, #2e7d32, #4caf50);
+    }
+
+    footer {
+      background: #004d40;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    @media (max-width: 576px) {
+      .form-container {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="header">
+    <h1>PU College Admission <span>2026–2027</span></h1>
+    <h5 class="mt-2 text-secondary">PES VIDYAKENDRA PU COLLEGE</h5>
+  </section>
+
+  <div class="form-container">
+    <h3 class="form-title">PU College Admission Enquiry</h3>
+    <form id="puForm" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <input type="text" name="studentName" class="form-control" placeholder="Student Name" required>
+        <div class="invalid-feedback">Please enter the student name.</div>
+      </div>
+      <div class="mb-3">
+        <input type="text" name="parentName" class="form-control" placeholder="Parent Name" required>
+        <div class="invalid-feedback">Please enter the parent name.</div>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
+          <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+        <div class="col-md-6">
+          <input type="tel" name="mobile" class="form-control" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+          <div class="invalid-feedback">Enter a 10-digit mobile number.</div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <select name="stream" class="form-select" required>
+          <option value="">Select PU Stream</option>
+          <option>Science</option>
+          <option>Commerce</option>
+          <option>Arts</option>
+        </select>
+        <div class="invalid-feedback">Please select a stream.</div>
+      </div>
+      <div class="form-check mt-3">
+        <input class="form-check-input" type="checkbox" name="consent" id="consent" required>
+        <label class="form-check-label" for="consent">
+          I agree to receive communications from PES Vidyakendra.
+        </label>
+        <div class="invalid-feedback">You must agree before submitting.</div>
+      </div>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 PES Vidyakendra PU College. All rights reserved.</p>
+      <p><a href="mailto:info@pesvidyakendra.com">info@pesvidyakendra.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+  (() => {
+    const form = document.getElementById('puForm');
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+
+      const data = {
+        studentName: form.studentName.value,
+        parentName: form.parentName.value,
+        email: form.email.value,
+        mobileNumber: form.mobile.value,
+        stream: form.stream.value,
+        consent: form.consent.checked
+      };
+
+      try {
+        const response = await fetch('/api/pu-enquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message);
+        form.reset();
+        form.classList.remove('was-validated');
+      } catch (err) {
+        alert('Error: ' + err.message);
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>
