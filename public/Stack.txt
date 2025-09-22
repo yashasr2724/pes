@@ -1,0 +1,58 @@
+3.	A class called Employee, which models an employee with an ID, name and salary, is designed as shown in the following class diagram. The method raiseSalary (percent) increases the salary by the given percentage. Develop the Employee class and suitable main method for demonstration.
+public class Employee
+{
+private int id;
+private String name;
+private double salary;
+
+public Employee(int id, String name, double salary)
+ 
+
+ 
+{
+this.id = id; this.name = name; this.salary = salary;
+}
+/*	public int getId() { return id;
+}
+
+public String getName() { return name;
+}
+public double getSalary() { return salary;
+}*/
+public void raiseSalary(double percent)
+{
+if (percent > 0)
+{
+double increaseAmount = salary * (percent / 100); salary += increaseAmount;
+System.out.println(name + "'s salary increased by " + percent + "%.");
+}
+else
+{
+System.out.println("Invalid percentage. Salary remains unchanged.");
+}
+}
+//	@Override
+public String toString()
+{
+return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+}
+public static void main(String[] args)
+{
+// Create Employee objects
+Employee emp1 = new Employee(1, "Raam", 50000.0); Employee emp2 = new Employee(2, "Krishn", 60000.0);
+ 
+// Display initial employee details System.out.println("The Employee Details:"); System.out.println(emp1); System.out.println(emp2);
+
+// Raise salary for employees emp1.raiseSalary(10.0); emp2.raiseSalary(5.0);
+
+// Display updated employee details System.out.println("\nUpdated Employee Details:"); System.out.println(emp1); System.out.println(emp2);
+}
+}
+
+OUTPUT:
+The Employee Details:
+Employee [id=1, name=Raam, salary=50000.0] Employee [id=2, name=Krishn, salary=60000.0] Raam's salary increased by 10.0%.
+Krishn's salary increased by 5.0%.
+Updated Employee Details:
+Employee [id=1, name=Raam, salary=55000.0] Employee [id=2, name=Krishn, salary=63000.0]
+ 
