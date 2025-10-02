@@ -1,4 +1,4 @@
-require("dotenv").config(); // Load .env first
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Serve HTML and static files from 'public' folder
+// ✅ Serve static frontend files (public folder)
 app.use(express.static(path.join(__dirname, "public")));
 
 // ===== Nodemailer Transporter =====
@@ -89,8 +89,13 @@ app.post("/api/pu-enquiry", async (req, res) => {
   }
 });
 
+// ✅ Catch-all route to serve index.html (important for Render)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
+  console.log(`🚀 Server running on port ${PORT}`)
 );
