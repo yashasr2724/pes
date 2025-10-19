@@ -7,7 +7,7 @@ const path = require("path");
 
 const app = express();
 
-// Middlewares
+// ===== Middleware =====
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -56,7 +56,7 @@ app.post("/api/enquiry", async (req, res) => {
   }
 });
 
-// ===== PU College Enquiry =====
+// ===== PU College Admission Enquiry =====
 app.post("/api/pu-enquiry", async (req, res) => {
   const { studentName, parentName, email, mobileNumber, stream, consent } =
     req.body;
@@ -89,13 +89,14 @@ app.post("/api/pu-enquiry", async (req, res) => {
   }
 });
 
-// ✅ Catch-all route to serve index.html (important for Render)
-app.get("*", (req, res) => {
+// ===== Default Route =====
+// ✅ Use "/" route instead of "*" for Render compatibility
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Start the server
+// ===== Start Server =====
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`🚀 Server running on port ${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
